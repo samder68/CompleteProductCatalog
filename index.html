@@ -2,48 +2,25 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Studio Group Associates - Product Catalog</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Complete Product Catalog</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
   <header>
-    <img src="https://raw.githubusercontent.com/samder68/CompleteProductCatalog/2fa39d1c7f52d2c458274c04f768c90e4e718ffc/logo.png" alt="Logo" class="logo" />
-    <h1>Studio Group Associates</h1>
+    <img src="https://raw.githubusercontent.com/samder68/CompleteProductCatalog/2fa39d1c7f52d2c458274c04f768c90e4e718ffc/logo.png" alt="Company Logo" class="logo">
+    <h1>Complete Product Catalog</h1>
     <input type="text" id="searchBox" placeholder="Search products...">
   </header>
 
   <main>
-    <div id="products"></div>
+    <div class="product-card">
+      <img src="http://studiogroupassociates.com/Product_Images/Acrylic/Acrylic Clip Boards/ACRCLP_A_BL.jpg" alt="Acrylic Clipboard A - Blue">
+      <h3>Acrylic Clipboard A - Blue</h3>
+      <p>Acrylic &gt; Acrylic Clip Boards</p>
+    </div>
   </main>
 
-  <script>
-    const products = [
-      {
-        name: "Acrylic Clipboard A - Blue",
-        img: "http://studiogroupassociates.com/Product_Images/Acrylic/Acrylic%20Clip%20Boards/ACRCLP_A_BL.jpg",
-        folder: "Acrylic > Acrylic Clip Boards"
-      },
-      // Add more products as needed following the same structure
-    ];
-
-    function displayProducts(products) {
-      const container = document.getElementById('products');
-      container.innerHTML = '';
-
-      products.forEach(product => {
-        const card = document.createElement('div');
-        card.className = 'product-card';
-        card.innerHTML = `
-          <img src="${product.img}" alt="${product.name}" />
-          <h3>${product.name}</h3>
-          <p>${product.folder}</p>
-        `;
-        container.appendChild(card);
-      });
-    }
-
-    displayProducts(products);
-  </script>
 </body>
 </html>
