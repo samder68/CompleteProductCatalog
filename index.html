@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Complete Product Catalog</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <img src="https://raw.githubusercontent.com/samder68/CompleteProductCatalog/2fa39d1c7f52d2c458274c04f768c90e4e718ffc/logo.png" alt="Company Logo" class="logo">
+    <h1>Complete Product Catalog</h1>
+    <input type="text" id="searchBox" placeholder="Search products...">
+  </header>
+
+<main>
+    <div id="products"></div>
+</main>
+
+
+<script>
+// Function to load CSV
+async function loadCSV(url) {
+  const response = await fetch(url);
+  const text = await response.text();
+  return Papa.parse(text, { header: true }).data;
+}
+
+// Function to create product cards
+function displayProducts(products) {
+  const productsContainer = document.getElementById('products');
+  productsContainer.innerHTML = '';
+
+  products.forEach(product => {
+    const productCard = document.createElement('div');
+    productCard.className = 'product-card';
+
+    productCard.innerHTML = `
+      <img src="${product['Direct Link']}" alt="${product['Name']}">
+      <h3>${product['Name']}</h3>
+      <p>${product['Folder Path']}</p>
+    `;
+
+    productsContainer.appendChild(productCard);
+  });
+}
+
+// Initialize
+async function init() {
+  const products = await loadCSV('product-data.csv');
+  displayProducts(products);
+}
+
+// Load PapaParse (CSV parser)
+const papaScript = document.createElement('script');
+papaScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js';
+papaScript.onload = init;
+document.head.appendChild(papaScript);
+</script>
+
+
+
+</body>
+</html>
