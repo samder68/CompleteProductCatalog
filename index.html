@@ -9,6 +9,78 @@
 <body>
 
   <header>
+    <div class="banner">
+      <img src="https://raw.githubusercontent.com/samder68/CompleteProductCatalog/2fa39d1c7f52d2c458274c04f768c90e4e718ffc/logo.png" alt="Company Logo" class="logo">
+      <h1>Complete Product Catalog</h1>
+      <input type="text" id="searchBox" placeholder="Search products...">
+    </div>
+  </header>
+
+<main>
+  <div id="products"></div>
+</main>
+
+<script>
+// CSV DATA EMBEDDED DIRECTLY
+const csvData = `Name,Direct Link,Folder Path
+CHS200D_NoInsert.jpg,https://drive.google.com/uc?export=view&id=1-So8jNk3y2lZdbGpDcdSO-B5MtVfmcxs,/
+CHS800D.jpg,https://drive.google.com/uc?export=view&id=18qlx9Orum9Bue9Zbo7jpD9HTlpaDbHBj,/
+A_FrameTwoViewTableTent_BK.jpg,https://drive.google.com/uc?export=view&id=1MCpuD7NmRbEn1st6NKzkiyWNCNIEoDTl,/
+CHS200D.jpg,https://drive.google.com/uc?export=view&id=1NHwVTrso0Y1Rm_39KZPDw3p0Mnr5e6Cw,/
+CHS600C.jpg,https://drive.google.com/uc?export=view&id=1OSLk4GS9qhkx1yf6sjZyppt8CoTcaEGm,/
+CHS200G_Opened.jpg,https://drive.google.com/uc?export=view&id=1cV_dFghHTrqNJE56vt1CbL6d4FhW6GCm,/
+CHS300D.jpg,https://drive.google.com/uc?export=view&id=1e1E7s-sHWHwzxkkd6N5faNQSQbaYMegs,/
+CHS200D_OpenNoInsert.jpg,https://drive.google.com/uc?export=view&id=1pFZttMCReghrE7_yEoToMTCTeETff-Uk,/
+CHS200G.jpg,https://drive.google.com/uc?export=view&id=1tO7I5dFX0MHiYUeU5HalqbICPGlQB7Ke,/
+Acrylic TT_rev.jpg,https://drive.google.com/uc?export=view&id=1PHgNf6E8ZJ0Ld267ZKyrx0bMSb2Mypbi,/ACRYLIC TENT
+`;
+
+function parseCSV(data) {
+  const lines = data.trim().split('\n');
+  const headers = lines.shift().split(',');
+  return lines.map(line => {
+    const parts = line.split(',');
+    const obj = {};
+    headers.forEach((h, i) => obj[h.trim()] = parts[i]?.trim());
+    return obj;
+  });
+}
+
+function displayProducts(products) {
+  const productsContainer = document.getElementById('products');
+  productsContainer.innerHTML = '';
+
+  products.forEach(product => {
+    const productCard = document.createElement('div');
+    productCard.className = 'product-card';
+
+    productCard.innerHTML = `
+      <img src="${product['Direct Link']}" alt="${product['Name']}">
+      <h3>${product['Name']}</h3>
+      <p>${product['Folder Path']}</p>
+    `;
+
+    productsContainer.appendChild(productCard);
+  });
+}
+
+const products = parseCSV(csvData);
+displayProducts(products);
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Complete Product Catalog</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
     <img src="https://raw.githubusercontent.com/samder68/CompleteProductCatalog/2fa39d1c7f52d2c458274c04f768c90e4e718ffc/logo.png" alt="Company Logo" class="logo">
     <h1>Complete Product Catalog</h1>
     <input type="text" id="searchBox" placeholder="Search products...">
